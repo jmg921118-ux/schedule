@@ -105,10 +105,13 @@ public class ScheduleService {
         );
 
         if (request.getPassword() == schedule.getPassword()) {
+
             //유저가 있는 경우
             scheduleRepository.deleteAllById(scheduleId);
         }
+        throw new IllegalStateException("비밀 번호가 맞지 않습니다.");
     }
+
 
 }
 
