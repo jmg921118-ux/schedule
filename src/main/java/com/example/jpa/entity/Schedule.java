@@ -1,16 +1,17 @@
 package com.example.jpa.entity;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-@Table
-@NoArgsConstructor
+@Table(name = "jpas")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 
 
-public class User {
+public class Schedule extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +22,7 @@ public class User {
     private String writer;
     private String password;
 
-    public User(String title, String contents, String writer, String password) {
+    public Schedule(String title, String contents, String writer, String password) {
         this.title = title;
         this.contents = contents;
         this.writer = writer;

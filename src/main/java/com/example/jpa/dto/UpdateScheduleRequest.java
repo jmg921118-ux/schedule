@@ -1,0 +1,11 @@
+package com.example.jpa.dto;
+
+import lombok.Getter;
+
+@Getter
+public class UpdateScheduleRequest {
+
+    private  String title;
+    private  String writer;
+    private  String password;
+}
