@@ -78,38 +78,39 @@ public class ScheduleService {
     @Transactional
     public UpdateScheduleResponse update(Long scheduleId, UpdateScheduleRequest request) {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
-                () -> new IllegalStateException("없는 유저입니다.")
+                () -> new IllegalStateException("없는 일정입니다.")
         );
-        if (schedule.getPassword() == request.getPassword()) {
-            schedule.update(
-                    request.getTitle(),
-                    request.getWriter()
-            );
-
-            return new UpdateScheduleResponse(
-                    schedule.getId(),
-                    schedule.getTitle(),
-                    schedule.getWriter(),
-                    schedule.getCreatedAt(),
-                    schedule.getModifiedAt()
-            );
+        if (!schedule.getPassword().equals(request.getPassword())) {
+            throw new IllegalStateException("비밀번호 맞지 않습니다.");
         }
-        throw new IllegalStateException("비밀번호 맞지 않습니다.");
+        schedule.update(
+                request.getTitle(),
+                request.getWriter()
+        );
+
+        return new UpdateScheduleResponse(
+                schedule.getId(),
+                schedule.getTitle(),
+                schedule.getWriter(),
+                schedule.getCreatedAt(),
+                schedule.getModifiedAt()
+        );
     }
 
 
     @Transactional
     public void delete(Long scheduleId, DeleteScheduleRequest request) {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
-                () -> new IllegalStateException("없는 유저입니다.")
+                () -> new IllegalStateException("없는 일정입니다.")
         );
 
-        if (request.getPassword() == schedule.getPassword()) {
+        if (!schedule.getPassword().equals(request.getPassword())) {
+            throw new IllegalStateException("비밀 번호가 맞지 않습니다.");
 
-            //유저가 있는 경우
-            scheduleRepository.deleteAllById(scheduleId);
+
         }
-        throw new IllegalStateException("비밀 번호가 맞지 않습니다.");
+        //유저가 있는 경우
+        scheduleRepository.deleteById(scheduleId);
     }
 
 

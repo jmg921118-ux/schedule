@@ -34,7 +34,7 @@ public class ScheduleController {
        List<GetOneScheduleResponse> result = scheduleService.getAll();
        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
-    @PutMapping("/jpas/{scheduleId}")
+    @PatchMapping("/jpas/{scheduleId}")
     public ResponseEntity<UpdateScheduleResponse> update(
             @PathVariable Long scheduleId,
             @RequestBody UpdateScheduleRequest request) {
