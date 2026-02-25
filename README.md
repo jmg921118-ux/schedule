@@ -45,7 +45,7 @@
 
 ## 🗂 ERD (Entity Relationship Diagram)
 
-![이커머스 백오피스 ERD](./커머스%20백오피스%20(1).png)
+<img width="1280" height="842" alt="Image" src="https://github.com/user-attachments/assets/77cb5cb7-2a3f-4c86-8d2c-4e579224a4fb" />
 
 ---
 
